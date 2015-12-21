@@ -1,7 +1,7 @@
 #!/bin/sh
 # This script provisions blank Ubunutu 14+ servers how
 # I like 'em. Installs latest versions of NodeJS, mongodb,
-# git, and authbind, along with some minor config. 
+# git, screen, and authbind, along with some minor config. 
 # @author: Suyash Kumar
 
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@" # Ensure user is root
@@ -35,4 +35,6 @@ apt-get -y install git
 ### Install VIM
 apt-get -y install vim
 
+### Install screen
+apt-get -y install screen
 
