@@ -1,7 +1,7 @@
 #!/bin/sh
 # This script provisions blank Ubunutu 14+ servers how
 # I like 'em. Installs latest versions of NodeJS, mongodb,
-# & authbind, along with some minor config. 
+# git, and authbind, along with some minor config. 
 # @author: Suyash Kumar
 
 [ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@" # Ensure user is root
@@ -28,6 +28,9 @@ apt-get -y install authbind
 touch /etc/authbind/byport/80
 chown bitnami /etc/authbind/byport/80 # Replace bitnami with non-root user
 chmod 755 /etc/authbind/byport/80
+
+### Install git
+apt-get -y install git
 
 ### Install VIM
 apt-get -y install vim
