@@ -24,7 +24,13 @@ mkdir /data/db
 ### Install and configure authbind 
 apt-get -y install authbind
 touch /etc/authbind/byport/80
-chown bitnami /etc/authbind/byport/80 # Replace bitnami with non-root user
+if id "bitnami" >/dev/null 2>&1; then
+  chown bitnami /etc/authbind/byport/80 # Replace bitnami with non-root user
+else
+  if id "vcm" >/dev/null 2>&1; then
+    chown vcm /etc/authbind/byport/80
+  fi
+fi
 chmod 755 /etc/authbind/byport/80
 
 ### Install git
