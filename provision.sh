@@ -42,3 +42,16 @@ apt-get -y install vim
 ### Install screen
 apt-get -y install screen
 
+### Install Docker
+# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script
+curl -fsSL get.docker.com -o get-docker.sh
+sh get-docker.sh
+rm get-docker.sh
+
+### Setup Docker without sudo
+usermod -aG docker vcm
+
+### Install docker-compose
+# https://docs.docker.com/compose/install/
+curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
