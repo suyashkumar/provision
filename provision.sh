@@ -4,8 +4,6 @@
 # git, screen, and authbind, along with some minor config. 
 # @author: Suyash Kumar
 
-[ "$(whoami)" != "root" ] && exec sudo -- "$0" "$@" # Ensure user is root
-
 apt-get update 
 
 ### Install proper repos for nodejs and install
@@ -17,7 +15,7 @@ apt-get install -y nodejs
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | tee /etc/apt/sources.list.d/mongodb.list
 apt-get update
-sudo apt-get install -y mongodb-org
+apt-get install -y mongodb-org
 # Make default dirs for mongodb. Make sure to chown later if 
 # you want to run mongod not as root (or use --dbpath)
 mkdir /data 
