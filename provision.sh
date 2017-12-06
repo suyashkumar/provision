@@ -24,7 +24,13 @@ mkdir /data/db
 ### Install and configure authbind 
 apt-get -y install authbind
 touch /etc/authbind/byport/80
-chown bitnami /etc/authbind/byport/80 # Replace bitnami with non-root user
+if id "bitnami" >/dev/null 2>&1; then
+  chown bitnami /etc/authbind/byport/80 # Replace bitnami with non-root user
+else
+  if id "vcm" >/dev/null 2>&1; then
+    chown vcm /etc/authbind/byport/80
+  fi
+fi
 chmod 755 /etc/authbind/byport/80
 
 ### Install git
@@ -36,3 +42,16 @@ apt-get -y install vim
 ### Install screen
 apt-get -y install screen
 
+### Install Docker
+# https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-convenience-script
+curl -fsSL get.docker.com -o get-docker.sh
+sh get-docker.sh
+rm get-docker.sh
+
+### Setup Docker without sudo
+usermod -aG docker vcm
+
+### Install docker-compose
+# https://docs.docker.com/compose/install/
+curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
