@@ -49,7 +49,12 @@ sh get-docker.sh
 rm get-docker.sh
 
 ### Setup Docker without sudo
-usermod -aG docker vcm
+if id "bitnami" >/dev/null 2>&1; then
+  usermod -aG docker bitnami
+fi
+if id "vcm" >/dev/null 2>&1; then
+  usermod -aG docker vcm
+fi
 
 ### Install docker-compose
 # https://docs.docker.com/compose/install/
